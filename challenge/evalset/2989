@@ -1,0 +1,14 @@
+func propdivsum(x) {
+    gather {
+        for d in (2 .. x.isqrt) {
+            if (d.divides(x)) {
+                take(d, x/d)
+            }
+        }
+    }.uniq.sum(x > 0 ? 1 : 0)
+}
+
+for i (1..20000) {
+    var j = propdivsum(i)
+    say "#{i} #{j}" if (j>i && i==propdivsum(j))
+}
